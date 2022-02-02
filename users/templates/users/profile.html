@@ -1,0 +1,130 @@
+{% extends "system/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <div class="col-md-6">
+      <div class="content-section">
+        <div class="media">
+          {% if user.profile.head %}
+            <img class="rounded-circle account-img" src="/media/profile_pics/{{ user.id }}/head.png">
+          {% else %}
+            <img class="rounded-circle account-img" src="/media/profile_pics/head.png">
+          {% endif %}
+          <div class="media-body">
+            <h2 class="account-heading">{{ user.username }}</h2>
+            <p class="text-secondary">{{ user.email }}</p>
+          </div>
+        </div>
+        <form method="POST" enctype="multipart/form-data">
+          {% csrf_token %}
+          <fieldset class="form-group">
+            <legend class="border-bottom mb-4">Profile Info</legend>
+            {{ u_form|crispy }}
+            {% for field in p_form %}
+            <div class="row">
+              <div class="col-md-10">
+                <div class="form-group">
+                  <label >{{ field.label }}</label>
+                    {{ field }} 
+                </div>
+              </div>
+
+              <div class="col-md-2">
+                <div class="h-100 d-flex justify-content-center align-items-center">
+                  <div>
+                  {% if field.name == 'head_img' and user.profile.head %}
+                    <span class="rimuovi" data-part="head">rimuovi</span>
+                  {% elif field.name == 'body_img' and user.profile.body %}
+                    <span class="rimuovi" data-part="body">rimuovi</span>
+                  {% elif field.name == 'arm_l_img' and user.profile.arm_l %}
+                    <span class="rimuovi" data-part="arm_l">rimuovi</span>
+                  {% elif field.name == 'arm_r_img' and user.profile.arm_r %}
+                    <span class="rimuovi" data-part="arm_r">rimuovi</span>
+                  {% elif field.name == 'leg_l_img' and user.profile.leg_l %}
+                    <span class="rimuovi" data-part="leg_l">rimuovi</span>
+                  {% elif field.name == 'leg_r_img' and user.profile.leg_r %}
+                    <span class="rimuovi" data-part="leg_r">rimuovi</span>
+                  {% endif %}
+                  </div>
+                </div>
+              </div>
+
+            </div>
+            {% endfor %}
+          </fieldset>
+          <div class="form-group">
+            <button class="btn btn-outline-info" type="submit">Update</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="col-md-6 content-section">
+        <div class="text-right" >
+          <span style="display: inline-flex;"><b style="margin:auto">Ranking: </b><span style="font-size: xxx-large;margin-left:15px">7</span></span>
+        </div>
+      <div class="h-100 d-flex justify-content-center align-items-center">
+        <div>
+          <div class="text-center">
+            {% if user.profile.head %}
+              <img src="/media/profile_pics/{{ user.id }}/head.png" width="80" height="90" />
+            {% else %}
+              <img src="/media/profile_pics/head.png" width="80" height="90" />
+            {% endif %}
+          </div>
+          <div class="text-center">
+            <!--<div class="col-md-4 text-right"> -->
+              {% if user.profile.arm_l %}
+                <img src="/media/profile_pics/{{ user.id }}/arm_l.png" width="98" height="235" />
+              {% else %}
+                <img src="/media/profile_pics/arm_l.png" width="98" height="235" />
+              {% endif %}
+            <!--</div>
+            <div class="col-md-4"> -->
+              {% if user.profile.body %}
+                <img src="/media/profile_pics/{{ user.id }}/body.png" width="117" height="235" />
+              {% else %}
+                <img src="/media/profile_pics/body.png" width="117" height="235" />
+              {% endif %}
+            <!--</div>
+            <div class="col-md-4 text-left"> -->
+              {% if user.profile.arm_r %}
+                <img src="/media/profile_pics/{{ user.id }}/arm_r.png" width="98" height="235" />
+              {% else %}
+                <img src="/media/profile_pics/arm_r.png" width="98" height="235" />
+              {% endif %}
+           <!-- </div> -->
+          </div>
+          <div class="text-center">
+            {% if user.profile.leg_l %}
+              <img src="/media/profile_pics/{{ user.id }}/leg_l.png" width="75" height="288" />
+            {% else %}
+              <img src="/media/profile_pics/leg_l.png" width="75" height="288" />
+            {% endif %}
+            {% if user.profile.leg_r %}
+              <img src="/media/profile_pics/{{ user.id }}/leg_r.png" width="75" height="288" />
+            {% else %}
+              <img src="/media/profile_pics/leg_r.png" width="75" height="288" />
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+    <script type="text/javascript">
+      
+      $(document).ready(function() {
+        $(document).on('click', ".rimuovi" , function() {
+
+          $.get( "/api/remove-part/"+$(this).data("part"), function( data ) {
+            if (data.status == 1) {
+              location.reload();
+            } else {
+              alert("Errore durante la richiesta")
+            }
+          }, "json" );
+
+        })
+
+      })
+
+
+    </script>
+{% endblock content %}

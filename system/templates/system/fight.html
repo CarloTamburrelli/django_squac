@@ -1,0 +1,245 @@
+{% extends "system/base.html" %}
+{% block content %}
+    <div class="row col-md-12">
+    	<div class="col-md-4">
+	      	<div class="content-section">
+	      		<div class="h-100 d-flex justify-content-center align-items-center">
+			        <div>
+			          <div class="text-center">
+			            {% if fight.user1.profile.head %}
+			              <img src="/media/profile_pics/{{ fight.user1_id }}/head.png" width="60" height="70" />
+			            {% else %}
+			              <img src="/media/profile_pics/head.png" width="60" height="70" />
+			            {% endif %}
+			          </div>
+			          <div class="text-center">
+			            <!--<div class="col-md-4 text-right"> -->
+			              {% if fight.user1.profile.arm_l %}
+			                <img src="/media/profile_pics/{{ fight.user1_id }}/arm_l.png" width="78" height="215" />
+			              {% else %}
+			                <img src="/media/profile_pics/arm_l.png" width="78" height="215" />
+			              {% endif %}
+			            <!--</div>
+			            <div class="col-md-4"> -->
+			              {% if fight.user1.profile.body %}
+			                <img src="/media/profile_pics/{{ fight.user1_id }}/body.png" width="97" height="215" />
+			              {% else %}
+			                <img src="/media/profile_pics/body.png" width="97" height="215" />
+			              {% endif %}
+			            <!--</div>
+			            <div class="col-md-4 text-left"> -->
+			              {% if fight.user1.profile.arm_r %}
+			                <img src="/media/profile_pics/{{ fight.user1_id }}/arm_r.png" width="78" height="215" />
+			              {% else %}
+			                <img src="/media/profile_pics/arm_r.png" width="78" height="215" />
+			              {% endif %}
+			           <!-- </div> -->
+			          </div>
+			          <div class="text-center">
+			            {% if fight.user1.profile.leg_l %}
+			              <img src="/media/profile_pics/{{ fight.user1_id }}/leg_l.png" width="55" height="268" />
+			            {% else %}
+			              <img src="/media/profile_pics/leg_l.png" width="55" height="268" />
+			            {% endif %}
+			            {% if fight.user1.profile.leg_r %}
+			              <img src="/media/profile_pics/{{ fight.user1_id }}/leg_r.png" width="55" height="268" />
+			            {% else %}
+			              <img src="/media/profile_pics/leg_r.png" width="55" height="268" />
+			            {% endif %}
+			          </div>
+			        </div>
+      			</div>
+
+	      	</div>
+      	</div>
+
+    	<div class="col-md-4">
+	      	<div id="classic_game" class="content-section">
+	      		
+	      	</div>
+      	</div>
+
+    	<div class="col-md-4">
+	      	<div class="content-section">
+	      		<div class="h-100 d-flex justify-content-center align-items-center">
+			        <div>
+			          <div class="text-center">
+			            {% if fight.user2.profile.head %}
+			              <img src="/media/profile_pics/{{ fight.user2_id }}/head.png" width="60" height="70" />
+			            {% else %}
+			              <img src="/media/profile_pics/head.png" width="60" height="70" />
+			            {% endif %}
+			          </div>
+			          <div class="text-center">
+			            <!--<div class="col-md-4 text-right"> -->
+			              {% if fight.user2.profile.arm_l %}
+			                <img src="/media/profile_pics/{{ fight.user2_id }}/arm_l.png" width="78" height="215" />
+			              {% else %}
+			                <img src="/media/profile_pics/arm_l.png" width="78" height="215" />
+			              {% endif %}
+			            <!--</div>
+			            <div class="col-md-4"> -->
+			              {% if fight.user2.profile.body %}
+			                <img src="/media/profile_pics/{{ fight.user2_id }}/body.png" width="97" height="215" />
+			              {% else %}
+			                <img src="/media/profile_pics/body.png" width="97" height="215" />
+			              {% endif %}
+			            <!--</div>
+			            <div class="col-md-4 text-left"> -->
+			              {% if fight.user2.profile.arm_r %}
+			                <img src="/media/profile_pics/{{ fight.user2_id }}/arm_r.png" width="78" height="215" />
+			              {% else %}
+			                <img src="/media/profile_pics/arm_r.png" width="78" height="215" />
+			              {% endif %}
+			           <!-- </div> -->
+			          </div>
+			          <div class="text-center">
+			            {% if fight.user2.profile.leg_l %}
+			              <img src="/media/profile_pics/{{ fight.user2_id }}/leg_l.png" width="55" height="268" />
+			            {% else %}
+			              <img src="/media/profile_pics/leg_l.png" width="55" height="268" />
+			            {% endif %}
+			            {% if fight.user2.profile.leg_r %}
+			              <img src="/media/profile_pics/{{ fight.user2_id }}/leg_r.png" width="55" height="268" />
+			            {% else %}
+			              <img src="/media/profile_pics/leg_r.png" width="55" height="268" />
+			            {% endif %}
+			          </div>
+			        </div>
+      			</div>
+	      	</div>
+      	</div>
+    </div>
+    <div class="row col-md-12">
+    	<div class="col-md-4">
+	      	<div class="content-section text-center">
+	      		<span class="label_name">{{ fight.user1.username }} {% if fight.user1_id == user.id %}(Tu){% endif %}</span>
+	      	</div>
+	    </div>
+    	<div class="col-md-4">
+	      	<div class="content-section text-center">
+	      		<span class="label_name label_timer">38 sec</span>
+	      	</div>
+	    </div>
+    	<div class="col-md-4">
+	      	<div class="content-section text-center">
+	      		<span class="label_name">{{ fight.user2.username }} {% if fight.user2_id == user.id %}(Tu){% endif %}</span>
+	      	</div>
+	    </div>
+    </div>
+
+    <div class="row col-md-12">
+    	<div class="col-md-12">
+	      	<div id="bonus" class="content-section wrapper">
+	      	</div>
+	    </div>
+	</div>
+    <div class="row col-md-12">
+    	<div class="col-md-4">
+	      	<div class="content-section text-center">
+	      		Punteggio partita: 342
+	      		Bonus: 3
+	      	</div>
+	    </div>
+    	<div class="col-md-4">
+	      	
+	    </div>
+    	<div class="col-md-4">
+	      	<div class="content-section text-center">
+	      		<span class="generic_msg">Deve ancora giocare</span>
+	      	</div>
+	    </div>
+    </div>
+
+
+    <div style="display: none" id="to_get">
+    	<div class="wrapper">
+
+    	</div>
+    	<div class="quad-item">
+    		
+    	</div>
+    </div>
+
+
+    <script type="text/javascript">
+	var n = 10
+    var colsClassicGame = 4
+    var colsBonus = 10
+
+	function randomIntFromInterval(min, max) { // min and max included 
+		return Math.floor(Math.random() * (max - min + 1) + min)
+	}
+
+    function createInterval (interval, timerRandomicMix = null) {
+		console.log("avvio intervallo")
+		if (timerRandomicMix == null) {
+			alert("Errore nella pagina. Riavviare il computer")
+			return false;
+		}
+		if (interval != null) {
+			clearInterval(interval)
+		}
+		interval = setInterval(function() {
+			$("#classic_game .quad-item").removeClass("boom")
+
+			row = randomIntFromInterval(0, n-1)
+			col = randomIntFromInterval(0, colsClassicGame-1)
+
+			$(".keynormal_"+row+"_"+col).addClass("boom")
+			
+			console.log("illumino ->"+row+"_"+col)
+
+		}, timerRandomicMix)
+		return interval
+	}
+
+
+
+    $(document).ready(function() {
+		
+		var interval = null
+
+
+      	for (col = 0; col < colsBonus; col = col + 1) {
+			var quad = $( "#to_get .quad-item" ).clone();
+			$(quad).addClass("keyspecial_0_"+col);
+			$("#bonus").append(quad)
+		}
+
+		$("#bonus .quad-item").css("height", $(".quad-item").width()+"px")
+
+		for (row = 0; row < n; row = row + 1) {
+
+			var wrapper = $( "#to_get .wrapper" ).clone();
+
+			for (col = 0; col < colsClassicGame; col = col + 1) {
+				var quad = $( "#to_get .quad-item" ).clone();
+				$(quad).addClass("keynormal_"+row+"_"+col);
+				$(wrapper).append(quad)
+			}
+
+			$("#classic_game").append(wrapper)
+		}
+
+		$(document).on('click', ".quad-item.boom" , function() {
+			$(this).removeClass("boom")
+
+		})
+
+
+
+		$("#classic_game .quad-item").css("height", $(".quad-item").width()+"px")
+
+		createInterval(interval, 2000);
+
+
+
+      })
+
+
+
+    </script>
+
+
+{% endblock content %}

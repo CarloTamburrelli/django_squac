@@ -1,0 +1,114 @@
+{% extends "system/base.html" %}
+{% block content %}
+    <div class="col-md-8">
+    	<div id="griglia">
+    	</div>
+    </div>
+
+    <div style="display: none" id="to_get">
+    	<div class="wrapper">
+
+    	</div>
+    	<div class="quad-item">
+    		
+    	</div>
+    </div>
+
+	<script type="text/javascript">
+		
+		var n = 5; // matrix n*n
+
+		function randomIntFromInterval(min, max) { // min and max included 
+		  return Math.floor(Math.random() * (max - min + 1) + min)
+		}
+
+		function createInterval (interval, timerRandomicMix = null) {
+			console.log("avvio intervallo")
+			if (timerRandomicMix == null) {
+				alert("Errore nella pagina. Riavviare il computer")
+				return false;
+			}
+			if (interval != null) {
+				clearInterval(interval)
+			}
+			interval = setInterval(function() {
+					$(".quad-item").removeClass("boom")
+
+					row = randomIntFromInterval(0, n-1)
+					col = randomIntFromInterval(0, n-1)
+
+					$(".key_"+row+"_"+col).addClass("boom")
+					console.log("illumino ->"+row+"_"+col)
+				}, timerRandomicMix)
+			return interval
+		}
+
+
+		
+		$(document).ready(function(){
+			var interval = null
+			for (row = 0; row < n; row = row + 1) {
+
+				var wrapper = $( "#to_get .wrapper" ).clone();
+
+				for (col = 0; col < n; col = col + 1) {
+					var quad = $( "#to_get .quad-item" ).clone();
+					$(quad).attr("data-key", row+"_"+col);
+					$(quad).addClass("key_"+row+"_"+col);
+					wrapper.append(quad)
+				}
+
+
+				$("#griglia").append(wrapper)
+			}
+
+			createInterval(interval, 1000);
+
+			$(".quad-item").css("height", $(".quad-item").width()+"px")
+
+			var randdd = 1000;
+			$(document).on('click', ".quad-item.boom" , function() {
+			    $(this).removeClass("boom")
+
+			    //clearinterval? appena entro perchè devo fare i controlli del caso, se no continui a schiacciar?
+			    //console.log($(this).data('key')+ "<--timer ->"+randdd)
+			    $.get( "/api/click/"+$(this).data('key'), function( data ) {
+		            if (data.status == 1) {
+
+		            	if("go_to_fight" in data){
+		            		//check if the player needs to start to fight!
+		            		if (data.go_to_fight == 1 && Number.isInteger(data.fight_id)) {
+		            			//Go to fight! 
+		            			window.location.href = "/fight/"+data.fight_id;
+		            		}
+		            	}
+
+		            	$("#punteggio").text(data.points)
+
+		            	console.log(data)
+		            	/* riavvio nuovo intervallo una volta terminata la req */
+					    //randdd = randdd - 100;
+					    //interval = createInterval(interval, randdd)
+		              
+		            } else {
+		              alert("Errore durante la richiesta")
+		            }
+		        }, "json" );
+			    //
+			    //
+			});
+
+
+			interval = setInterval(function() {
+				$(".quad-item").removeClass("boom")
+
+				row = randomIntFromInterval(0, n-1)
+				col = randomIntFromInterval(0, n-1)
+
+				$(".key_"+row+"_"+col).addClass("boom")
+
+			},2000)
+
+		})
+	</script>
+{% endblock content %}

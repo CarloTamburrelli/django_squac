@@ -1,0 +1,54 @@
+.wrapper {
+    touch-action: none;
+    position: relative;
+    display:table;
+    border-collapse:separate;
+    border-spacing: 10px 5px;
+    table-layout: fixed;
+    overflow: hidden;
+    width: 100%;
+}
+
+#punteggio {
+  color:  black;
+}
+
+.wrap div {
+  height: 200px; width: 50%;float: left;
+}
+
+.quad-item {
+    display: table-cell;
+    border-radius: 10px;
+    border-color: grey;
+    border-style: solid;
+    border-width: 10px;
+    color: white;
+    font-weight: bold;
+    font-size: 1.5em;
+    text-align: center;
+    height: auto;
+}
+
+.quad-item.boom {
+  background-color: yellow;
+}
+
+.quad-item.boom:active {
+  background-color: green;
+}
+
+
+.label_name {
+  font-weight: bold;
+  font-size: 25px;
+}
+
+.label_timer {
+  color: green;
+}
+
+.generic_msg {
+  font-weight: bold;
+}
+

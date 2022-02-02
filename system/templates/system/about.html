@@ -1,0 +1,31 @@
+{% extends "system/base.html" %}
+{% load static %}
+{% block content %}
+	<div class="col-md-12">
+		<h1>About Page</h1>
+		<article class="media content-section">
+			<div><p>A game created suddenly.
+				<br>
+				<h2>Profile</h2>
+				You can change your profile by replacing body parts (6 parts) at will.
+				<center><img src="{% static 'system/img/profile.png' %}" width="70%"  /></center>
+				<h2>Rules</h2>
+				The game is divided into <b>2 phases</b>:<br>
+				in the first phase you will simply have to crush the yellow squares that are shown on the screen. If you push it before it disappears you'll score a point!<br>
+				<i>(You can see your score on the top right)</i>
+				<center><img src="{% static 'system/img/step_1.png' %}" width="70%"  /></center>
+				Meanwhile, other players will be playing like you and if someone crushes a yellow square in the same position where you crushed it too, the battle will start!<br /> <i>(In the picture your profile is on the left and your opponent's on the right)</i><br>
+				<center><img src="{% static 'system/img/battle.png' %}" width="70%"  /></center>
+
+
+
+
+				<h2>Extensions yet to be implemented</h2>
+
+				<img src="{% static 'system/img/cubo_giallo.png' %}" width="124"  /> If clicked it gives you <b>1</b> point <br>
+				<img src="{% static 'system/img/cubo_nero.png' %}" width="124" />If clicked it gives you -<b>3</b> point <br>
+				<img src="{% static 'system/img/cubo_viola.png' %}" width="124" />If clicked it gives you +<b>3</b> points <br>
+			</p></div>
+		</article>
+	</div>
+{% endblock content %}
