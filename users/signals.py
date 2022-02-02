@@ -14,9 +14,11 @@ def create_profile(sender, instance, created, **kwargs):
 		if created:
 			prof = Profile.objects.create(user=instance)
 			dirtocreate = os.path.join(settings.MEDIA_ROOT+"/profile_pics", str(prof.user.id))
-			if os.path.isfile(dirtocreate):
+			if not os.path.isfile(dirtocreate):
+				print("entra")
 				os.makedirs(dirtocreate)
-
+			else:
+				print("non entra")
 
 @receiver(pre_save, sender=Profile)
 def auto_delete_file_on_change(sender, instance, **kwargs):

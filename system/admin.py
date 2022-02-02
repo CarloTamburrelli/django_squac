@@ -1,6 +1,8 @@
 from django.contrib import admin
 from .models import SystemGame
 
+admin.site.register(SystemGame)
+
 #admin.site.site_header = "Login to Admin Panel"
 #admin.site.site_title = "Game Admin"
 #admin.site.index_title = "Welcome!!"
