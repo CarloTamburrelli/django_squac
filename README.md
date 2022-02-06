@@ -1,6 +1,6 @@
 ## Very Important
 
-Phase 2 of the game (battle part) is yet to be finished implementing. The system currently redirects players to battle (only multivelox and kerokaznu).
+Phase 2 of the game (battle part) is yet to be finished implementing.The system currently only redirects players to battle (only multivelox and kerokaznu).
 
 In this moment there are 3 users (and of course admin) :
 ```sh
